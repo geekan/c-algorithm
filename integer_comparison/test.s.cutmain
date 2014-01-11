@@ -1,0 +1,118 @@
+	.file	"test.c"
+	.text
+.Ltext0:
+	.p2align 4,,15
+	.globl	f1
+	.type	f1, @function
+f1:
+.LFB34:
+	.file 1 "test.c"
+	.loc 1 9 0
+	.cfi_startproc
+.LVL0:
+	.loc 1 10 0
+	xorl	%eax, %eax
+	cmpl	%edi, %esi
+	setg	%al
+	xorl	%edx, %edx
+	negl	%eax
+	cmpl	%esi, %edi
+	setg	%dl
+	orl	%edx, %eax
+	.loc 1 11 0
+	ret
+	.cfi_endproc
+.LFE34:
+	.size	f1, .-f1
+	.p2align 4,,15
+	.globl	f2
+	.type	f2, @function
+f2:
+.LFB35:
+	.loc 1 14 0
+	.cfi_startproc
+.LVL1:
+	.loc 1 15 0
+	xorl	%eax, %eax
+	cmpl	%esi, %edi
+	setl	%dl
+	setg	%al
+	movzbl	%dl, %edx
+	subl	%edx, %eax
+	.loc 1 16 0
+	ret
+	.cfi_endproc
+.LFE35:
+	.size	f2, .-f2
+	.p2align 4,,15
+	.globl	f3
+	.type	f3, @function
+f3:
+.LFB36:
+	.loc 1 19 0
+	.cfi_startproc
+.LVL2:
+	.loc 1 19 0
+	movl	%edi, %eax
+	.loc 1 20 0
+#APP
+# 20 "test.c" 1
+	sub %esi, %eax 
+	jno 1f 
+	cmc 
+	rcr %eax 
+	1: 
+# 0 "" 2
+.LVL3:
+	.loc 1 30 0
+#NO_APP
+	ret
+	.cfi_endproc
+.LFE36:
+	.size	f3, .-f3
+	.p2align 4,,15
+	.globl	compare1
+	.type	compare1, @function
+compare1:
+.LFB37:
+	.loc 1 33 0
+	.cfi_startproc
+.LVL4:
+	.loc 1 34 0
+	xorl	%edx, %edx
+	cmpl	%esi, %edi
+	movl	$-1, %eax
+	setg	%dl
+	cmovge	%edx, %eax
+	.loc 1 37 0
+	ret
+	.cfi_endproc
+.LFE37:
+	.size	compare1, .-compare1
+	.p2align 4,,15
+	.globl	compare2
+	.type	compare2, @function
+compare2:
+.LFB38:
+	.loc 1 39 0
+	.cfi_startproc
+.LVL5:
+	.loc 1 40 0
+	xorl	%edx, %edx
+	cmpl	%esi, %edi
+	movl	$-1, %eax
+	setg	%dl
+	cmovge	%edx, %eax
+	.loc 1 43 0
+	ret
+	.cfi_endproc
+.LFE38:
+	.size	compare2, .-compare2
+	.section	.rodata.str1.8,"aMS",@progbits,1
+	.align 8
+.LC0:
+	.string	"%s: diff:%ld, start:%ld, end:%ld, ret:%d\n"
+	.section	.text.startup,"ax",@progbits
+	.p2align 4,,15
+	.globl	main
+	.type	main, @function

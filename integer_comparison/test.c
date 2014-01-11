@@ -76,7 +76,7 @@ int main()
         clock_gettime(CLOCK_THREAD_CPUTIME_ID, &start);
         for (a = 0; a < TESTNUM; a++)
             for (b = 0; b < TESTNUM; b++)
-                ret += compare(a, b);
+                ret += compare(random_int[a], random_int[b]);
         clock_gettime(CLOCK_THREAD_CPUTIME_ID, &end);
         printf("%s: diff:%ld, start:%ld, end:%ld, ret:%d\n",
                 farr[i].name, end.tv_nsec - start.tv_nsec, start.tv_nsec, end.tv_nsec, ret);
